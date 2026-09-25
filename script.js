@@ -1,13 +1,23 @@
 // Each .binary-col shows one word from the .binary data-words list, written in
-// binary with one bit per line. When a word has slid out, the column takes the
-// next word from the list and starts a new pass at a new random speed.
+// binary with one bit per line. When a word has slid out, the column picks a
+// random word from the list and starts a new pass at a new random speed.
 const binary = document.querySelector(".binary");
 
 if (binary) {
   const words = binary.dataset.words.split(",").map((w) => w.trim()).filter(Boolean);
-  const MIN_SPEED = 38; // px per second
-  const MAX_SPEED = 58;
-  let next = 0;
+  const MIN_SPEED = 26; // px per second
+  const MAX_SPEED = 40;
+  const showing = new Map(); // track -> word it is currently showing
+
+  // Pick a random word, avoiding ones other columns are showing when possible.
+  const pickWord = (track) => {
+    const taken = new Set([...showing].filter(([t]) => t !== track).map(([, w]) => w));
+    const free = words.filter((w) => !taken.has(w));
+    const pool = free.length ? free : words;
+    const word = pool[Math.floor(Math.random() * pool.length)];
+    showing.set(track, word);
+    return word;
+  };
 
   const toBinary = (word) =>
     [...word]
@@ -16,7 +26,7 @@ if (binary) {
       .join("\n\n");
 
   const startPass = (track, isFirst) => {
-    track.textContent = toBinary(words[next++ % words.length]);
+    track.textContent = toBinary(pickWord(track));
 
     const speed = MIN_SPEED + Math.random() * (MAX_SPEED - MIN_SPEED);
     const duration = (track.offsetHeight + binary.clientHeight) / speed;
