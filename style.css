@@ -284,6 +284,38 @@ main {
   }
 }
 
+/* Projects */
+
+.projects {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project + .project {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.project-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 16px;
+}
+
+.project h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.section .project p {
+  margin: 8px 0 16px;
+}
+
 /* Contact */
 
 .contact-links {
@@ -295,7 +327,7 @@ main {
   list-style: none;
 }
 
-.contact-btn {
+.link-btn {
   display: inline-block;
   padding: 6px 14px;
 
@@ -309,17 +341,17 @@ main {
   transition: border-color 0.15s, color 0.15s;
 }
 
-.contact-btn::before {
+.link-btn::before {
   content: "~/";
   color: var(--accent);
 }
 
-.contact-btn:hover {
+.link-btn:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
 
-.contact-btn:focus-visible {
+.link-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
