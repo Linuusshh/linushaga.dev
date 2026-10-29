@@ -205,6 +205,46 @@ main {
   font-size: 1.05rem;
 }
 
+/* Contact */
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 6px 14px;
+
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.contact-btn::before {
+  content: "~/";
+  color: var(--accent);
+}
+
+.contact-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.contact-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
 .eyebrow {
   margin: 0 0 12px;
   font-size: 0.8rem;
