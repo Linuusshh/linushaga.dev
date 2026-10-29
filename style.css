@@ -9,6 +9,8 @@
   --line: #2b2722;
   --accent: #c9a86a;
 
+  --content-width: 960px;
+
   --font: "Noto Serif Display", Georgia, "Times New Roman", serif;
 }
 
@@ -153,7 +155,7 @@ main {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  max-width: 720px;
+  max-width: var(--content-width);
   margin: 0 auto;
   padding: 48px 24px 96px;
 }
@@ -181,7 +183,7 @@ main {
 /* Sections */
 
 .section {
-  max-width: 720px;
+  max-width: var(--content-width);
   margin: 0 auto;
   padding: 96px 24px;
   border-top: 1px solid var(--line);
@@ -203,6 +205,83 @@ main {
   margin: 0;
   color: var(--muted);
   font-size: 1.05rem;
+}
+
+.section p + p {
+  margin-top: 16px;
+}
+
+.section .lead {
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+/* Skills */
+
+.section .skills-title {
+  margin-bottom: 16px;
+}
+
+.skills-title::before {
+  content: "$ ";
+  color: var(--accent);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.skill-groups {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.skill-group {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.skill-group dt {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.skill-group dd {
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 2px 10px;
+  font-size: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .skill-group {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
 }
 
 /* Contact */
