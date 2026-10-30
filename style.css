@@ -11,7 +11,8 @@
 
   --content-width: 960px;
 
-  --font: "Noto Serif Display", Georgia, "Times New Roman", serif;
+  --font: "Noto Serif", Georgia, "Times New Roman", serif;
+  --font-display: "Noto Serif Display", Georgia, "Times New Roman", serif;
 }
 
 body {
@@ -28,6 +29,12 @@ body {
     radial-gradient(ellipse 60% 50% at 85% 15%, rgba(201, 168, 106, 0.08), transparent 70%),
     radial-gradient(ellipse 50% 40% at 10% 100%, rgba(201, 168, 106, 0.04), transparent 70%),
     var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
 }
 
 a {
@@ -222,11 +229,6 @@ main {
   margin-bottom: 16px;
 }
 
-.skills-title::before {
-  content: "$ ";
-  color: var(--accent);
-}
-
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -298,18 +300,17 @@ main {
   border-top: 1px solid var(--line);
 }
 
-.project-head {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px 16px;
-}
-
 .project h3 {
   margin: 0;
   font-size: 1.4rem;
   font-weight: 400;
+}
+
+.project h3 a {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .section .project p {
@@ -358,15 +359,10 @@ main {
 
 .eyebrow {
   margin: 0 0 12px;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   letter-spacing: 0.15em;
   color: var(--accent);
   opacity: 0.85;
-}
-
-.eyebrow::before {
-  content: "$ ";
-  color: var(--muted);
 }
 
 .hero h1 {
