@@ -155,6 +155,146 @@ a:focus-visible {
   display: block;
 }
 
+/* Easter egg: switching theme makes the screen twitch like an old TV.
+   script.js adds .glitching to <html> and skips it for reduced-motion users. */
+
+.glitching {
+  overflow-x: clip; /* Stops the twitch from flashing a horizontal scrollbar. */
+}
+
+.glitching .site-header,
+.glitching main,
+.glitching .site-footer {
+  animation: tv-twitch 0.5s steps(1) both;
+}
+
+.tv-glitch {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  pointer-events: none;
+
+  /* Black and white static. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glitching .tv-glitch {
+  display: block;
+  animation: tv-static 0.5s steps(1) both;
+}
+
+/* Scanlines. */
+.tv-glitch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 4px);
+}
+
+/* Bright band rolling down the screen. */
+.tv-glitch::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 16vh;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: tv-roll 0.5s linear both;
+}
+
+@keyframes tv-twitch {
+  0% {
+    transform: translate(-10px, 2px) skewX(3deg);
+    text-shadow: 3px 0 rgba(255, 0, 60, 0.7), -3px 0 rgba(0, 220, 255, 0.7);
+  }
+
+  10% {
+    transform: translate(8px, -3px) skewX(-2deg);
+  }
+
+  20% {
+    transform: none;
+    text-shadow: none;
+  }
+
+  36% {
+    transform: translate(-14px, 0) skewX(5deg);
+    text-shadow: -4px 0 rgba(255, 0, 60, 0.7), 4px 0 rgba(0, 220, 255, 0.7);
+  }
+
+  46% {
+    transform: translate(4px, 4px);
+  }
+
+  58% {
+    transform: translate(-4px, -1px);
+    text-shadow: 2px 0 rgba(255, 0, 60, 0.7), -2px 0 rgba(0, 220, 255, 0.7);
+  }
+
+  72% {
+    transform: translate(9px, 0) skewX(-4deg);
+  }
+
+  84%,
+  100% {
+    transform: none;
+    text-shadow: none;
+  }
+}
+
+@keyframes tv-static {
+  0% {
+    opacity: 0.6;
+    background-position: 0 0;
+  }
+
+  10% {
+    opacity: 0.3;
+    background-position: -80px 40px;
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  36% {
+    opacity: 0.5;
+    background-position: 120px -60px;
+  }
+
+  46% {
+    opacity: 0.3;
+    background-position: -30px 110px;
+  }
+
+  58% {
+    opacity: 0.2;
+    background-position: 70px 20px;
+  }
+
+  72% {
+    opacity: 0.12;
+    background-position: -140px -90px;
+  }
+
+  84%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tv-roll {
+  from {
+    transform: translateY(-16vh);
+  }
+
+  to {
+    transform: translateY(100vh);
+  }
+}
+
 /* Hero */
 
 html {

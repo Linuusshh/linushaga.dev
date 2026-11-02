@@ -64,7 +64,27 @@ if (themeToggle) {
     themeToggle.setAttribute("aria-label", `Switch to ${isLight() ? "dark" : "light"} mode`);
   };
 
+  const glitch = document.querySelector(".tv-glitch");
+
+  // Easter egg: the screen twitches like an old TV as the theme changes.
+  const playGlitch = () => {
+    if (!glitch || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Restart the animation if the button is clicked again mid-glitch.
+    root.classList.remove("glitching");
+    void root.offsetWidth;
+    root.classList.add("glitching");
+  };
+
+  glitch?.addEventListener("animationend", (event) => {
+    if (event.target === glitch && event.pseudoElement === "") {
+      root.classList.remove("glitching");
+    }
+  });
+
   themeToggle.addEventListener("click", () => {
+    playGlitch();
+
     if (isLight()) {
       delete root.dataset.theme;
     } else {
