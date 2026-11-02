@@ -8,11 +8,27 @@
   --muted: #9a9284;
   --line: #2b2722;
   --accent: #c9a86a;
+  --glow-strong: rgba(201, 168, 106, 0.08);
+  --glow-soft: rgba(201, 168, 106, 0.04);
 
   --content-width: 960px;
 
   --font: "Noto Serif", Georgia, "Times New Roman", serif;
   --font-display: "Noto Serif Display", Georgia, "Times New Roman", serif;
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f1e7;
+  --text: #241f18;
+  --muted: #6a6256;
+  --line: #ddd4c4;
+  --accent: #806224;
+  --glow-strong: rgba(128, 98, 36, 0.08);
+  --glow-soft: rgba(128, 98, 36, 0.04);
+
+  color-scheme: light;
 }
 
 body {
@@ -26,8 +42,8 @@ body {
   line-height: 1.6;
   color: var(--text);
   background:
-    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(201, 168, 106, 0.08), transparent 70%),
-    radial-gradient(ellipse 50% 40% at 10% 100%, rgba(201, 168, 106, 0.04), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 85% 15%, var(--glow-strong), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 10% 100%, var(--glow-soft), transparent 70%),
     var(--bg);
 }
 
@@ -74,6 +90,13 @@ a:focus-visible {
   color: var(--accent);
 }
 
+.header-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
 .site-nav {
   display: flex;
   gap: 0.6em;
@@ -83,6 +106,53 @@ a:focus-visible {
   content: "/";
   margin-right: 0.6em;
   color: var(--accent);
+}
+
+/* Theme toggle: shows the mode you'd switch to. */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: -6px 0; /* Keeps the header height the .hero min-height relies on. */
+  padding: 0;
+
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-moon,
+:root[data-theme="light"] .icon-sun {
+  display: none;
+}
+
+:root[data-theme="light"] .icon-moon {
+  display: block;
 }
 
 /* Hero */

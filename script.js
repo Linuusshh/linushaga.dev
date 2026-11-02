@@ -52,6 +52,37 @@ if (binary) {
   });
 }
 
+// Switch between dark (the default) and light, and remember the choice.
+// The inline script in index.html applies the saved theme on load.
+const themeToggle = document.querySelector(".theme-toggle");
+
+if (themeToggle) {
+  const root = document.documentElement;
+  const isLight = () => root.dataset.theme === "light";
+
+  const updateLabel = () => {
+    themeToggle.setAttribute("aria-label", `Switch to ${isLight() ? "dark" : "light"} mode`);
+  };
+
+  themeToggle.addEventListener("click", () => {
+    if (isLight()) {
+      delete root.dataset.theme;
+    } else {
+      root.dataset.theme = "light";
+    }
+
+    try {
+      localStorage.setItem("theme", isLight() ? "light" : "dark");
+    } catch {
+      // Storage can be blocked; the switch still works for this visit.
+    }
+
+    updateLabel();
+  });
+
+  updateLabel();
+}
+
 // Keep the footer year current.
 const year = document.querySelector(".year");
 
