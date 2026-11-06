@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 
+/* Registering the theme colors as real colors lets the browser fade between
+   them, so switching theme eases over instead of snapping like a flashbang. */
+@property --bg { syntax: "<color>"; inherits: true; initial-value: #141210; }
+@property --text { syntax: "<color>"; inherits: true; initial-value: #ece6da; }
+@property --muted { syntax: "<color>"; inherits: true; initial-value: #9a9284; }
+@property --line { syntax: "<color>"; inherits: true; initial-value: #2b2722; }
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #c9a86a; }
+@property --glow-strong { syntax: "<color>"; inherits: true; initial-value: transparent; }
+@property --glow-soft { syntax: "<color>"; inherits: true; initial-value: transparent; }
+
 :root {
   --bg: #141210;
   --text: #ece6da;
@@ -17,6 +27,15 @@
   --font-display: "Noto Serif Display", Georgia, "Times New Roman", serif;
 
   color-scheme: dark;
+
+  transition:
+    --bg 0.8s ease,
+    --text 0.8s ease,
+    --muted 0.8s ease,
+    --line 0.8s ease,
+    --accent 0.8s ease,
+    --glow-strong 0.8s ease,
+    --glow-soft 0.8s ease;
 }
 
 :root[data-theme="light"] {
