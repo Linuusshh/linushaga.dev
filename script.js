@@ -33,7 +33,7 @@ if (binary) {
     track.style.setProperty("--dur", `${duration}s`);
 
     // On page load the columns start from the top, staggered so they don't fall in unison.
-    const delay = isFirst ? Math.random() * 2.5 : 0;
+    const delay = isFirst ? Math.random() * 0.8 : 0;
     track.style.setProperty("--delay", `${delay}s`);
 
     // Restart the animation with the new duration.

@@ -635,8 +635,28 @@ main {
   }
 }
 
+/* The hero lines rise in one after another when the page loads. The animation
+   only runs once, so switching theme doesn't replay it. */
+.hero > * {
+  animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero > :nth-child(1) { animation-delay: 0.1s; }
+.hero > :nth-child(2) { animation-delay: 0.25s; }
+.hero > :nth-child(3) { animation-delay: 0.45s; }
+.hero > :nth-child(4) { animation-delay: 0.7s; }
+
+/* No "to" keyframe, so each line ends at its own opacity (the eyebrow is 0.85). */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .cursor {
+  .cursor,
+  .hero > * {
     animation: none;
   }
 }
