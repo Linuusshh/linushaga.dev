@@ -6,5 +6,6 @@
     { "pattern": "linushaga.dev", "custom_domain": true },
     { "pattern": "www.linushaga.dev", "custom_domain": true }
   ],
-  "previews": {}
+  "previews": {},
+  "preview_urls": true
 }
