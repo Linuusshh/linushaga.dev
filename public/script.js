@@ -53,7 +53,7 @@ if (binary) {
 }
 
 // Switch between dark (the default) and light, and remember the choice.
-// The inline script in index.html applies the saved theme on load.
+// theme.js applies the saved theme on load, before the page draws.
 const themeToggle = document.querySelector(".theme-toggle");
 
 if (themeToggle) {

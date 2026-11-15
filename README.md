@@ -19,8 +19,9 @@ The site is a work in progress.
 | --------------------- | ----------------------------------------------------------------------- |
 | `public/index.html`   | The page: header, hero, about, projects, contact and footer.            |
 | `public/style.css`    | All styling, both themes and the animations.                            |
+| `public/theme.js`     | Applies the saved theme before the page draws, so light doesn't flash dark. |
 | `public/script.js`    | The binary rain, the theme toggle with its glitch, and the footer year. |
-| `public/_headers`     | Security headers Cloudflare adds to every response.                     |
+| `public/_headers`     | Security headers Cloudflare adds to every response, including the Content-Security-Policy and HSTS. |
 | `wrangler.jsonc`      | Cloudflare Workers config: serves `public/` as static assets.           |
 
 ## Running it locally
